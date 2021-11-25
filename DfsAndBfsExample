@@ -1,0 +1,96 @@
+package com.graph.prg;
+
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.concurrent.LinkedBlockingQueue;
+
+public class DfsAndBfsExample {
+	
+	static int e1[];
+	static int e2[];
+	static int vertice;
+	static int edges;
+	static int matrics[][];
+	public static void main(String[] args) {
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("eneter number of vertices.");
+		vertice = sc.nextInt();
+		System.out.println("enter number of edges.");
+		edges=sc.nextInt();
+		e1=new int[edges];
+		e2=new int[edges];
+		System.out.println("edges are...");
+		for(int i=0;i<edges;i++){
+			e1[i]=sc.nextInt();
+			e2[i]=sc.nextInt();
+		}
+		matrics=new int[vertice][vertice];
+		for(int i=0;i<edges;i++){
+			matrics[e1[i]][e2[i]]=1;
+		}
+		
+		for(int i=0;i<vertice;i++){
+			for(int j=0;j<vertice;j++){
+				System.out.print(matrics[i][j]+" ");
+			}
+			System.out.println("");
+		}
+		DFS();
+		BFS();
+	}
+	
+	static void BFS(){
+		Queue q=new LinkedBlockingQueue();
+		Integer node=e1[0];
+		q.add(node);
+		boolean visited[]=new boolean[vertice];
+		visited[node]=true;
+		int count=1;
+		System.out.println();
+		System.out.println("BFS elements are:");
+		System.out.print(node+" ");
+		while(vertice>count){
+			for(int i=0;i<vertice;i++){
+				if(matrics[node][i]==1 && visited[i]!=true){
+					q.add(i);
+					System.out.print(i+" ");
+					visited[i]=true;
+					count++;
+				}
+			}
+			Object node1=q.poll();
+			node =(Integer) node1;
+		}
+	}
+	
+	static void DFS(){
+		int count=1;
+		Integer node= e1[0];
+		boolean visited[]=new boolean[vertice];
+		Stack st=new Stack();
+		st.push(node);
+		visited[node]=true;
+		System.out.println("DFS elemets are:");
+		System.out.print(node+" ");
+		while(vertice>count){
+			boolean status=false;
+			for(int i=0;i<vertice;i++){
+				if(matrics[node][i]==1 && visited[i]!=true){
+					node =i;
+					st.push(node);
+					System.out.print(node+" ");
+					count++;
+					visited[node]=true;
+					status=true;
+					break;
+				}
+			}
+			if(status==false){
+				node=(Integer)st.pop();
+			}
+		}
+	}
+
+}
