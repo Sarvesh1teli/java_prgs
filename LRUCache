@@ -1,0 +1,81 @@
+package com.imp.prgs;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
+public class LRUCache {
+
+	public static void main(String[] args) {
+		
+		set(10, 100);
+		set(20, 200);
+		set(30, 300);
+		set(40, 400);
+		set(50, 500);
+		set(10, 600);
+		
+		System.out.println(get(10));
+		
+		for (int i=0;i< linkedlist.size() ;i++) {
+			System.out.println(linkedlist.get(i).getKey() +" "+ linkedlist.get(i).getValue());
+		}
+		
+	}
+	
+	private static int MAX_SIZE = 4 ;
+	
+	static Map<Integer,Node> map = new HashMap<Integer, Node>();
+	static LinkedList<Node> linkedlist = new LinkedList();
+	
+	static void set(int key,int value) {
+		
+		Node newnode = new Node(key,value);
+		
+		if(map.containsKey(key)) {
+			Node oldData = map.get(key);
+			linkedlist.remove(oldData);
+			linkedlist.add(newnode);
+			map.put(key, newnode);
+		}else {
+			if(map.size() >= MAX_SIZE) {
+				map.remove(linkedlist.pollFirst().getKey());
+			}
+			map.put(key, newnode);
+			linkedlist.add(newnode);
+		}
+	}
+	
+	public static int get(int key) {
+		
+		if(map.containsKey(key)) {
+			Node oldData = map.get(key);
+			linkedlist.remove(oldData);
+			linkedlist.add(oldData);
+			return oldData.getValue();
+		}
+		return -1;
+	}
+}
+
+class Node{
+	int key;
+	int value;
+	public Node(int key, int value) {
+		super();
+		this.key = key;
+		this.value = value;
+	}
+	public int getKey() {
+		return key;
+	}
+	public void setKey(int key) {
+		this.key = key;
+	}
+	public int getValue() {
+		return value;
+	}
+	public void setValue(int value) {
+		this.value = value;
+	}
+}
