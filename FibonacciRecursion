@@ -1,0 +1,20 @@
+package com.programs;
+
+public class FibonacciRecursion {
+	public static void main(String[] args) {
+		for(int i=0;i<=5;i++){
+		      System.out.printf("fibonaccies of %d is: %d\n", i, fib(i));
+
+		}
+	}
+
+	private static int fib(int i) {
+		if(i==0 || i==1){
+			return 1;
+		}else{
+			return fib(i-1)+fib(i-2);
+		}
+		
+	}
+
+}
