@@ -1,0 +1,23 @@
+package com.basic.prg;
+/**
+ * @author Teli
+ *
+ */
+public class IterationFactorial {
+	public static void main(String[] args) {
+		IterationFactorial it=new IterationFactorial();
+		int factval=it.factorial(2);
+		System.out.println("factorial of  :"+factval);
+	}
+	/**
+	 * @param number
+	 * @return
+	 */
+	public int factorial(int number){
+		int sum=1;
+		for(int i=1;i<=number;i++){
+			sum=sum*i;
+		}
+		return sum;
+	}
+}
