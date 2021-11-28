@@ -58,3 +58,16 @@ public class PairOfSumNumInter{
 		}
 	}
 }
+
+/*Approach 1 for pair of sum:
+[ 6,4 ]
+[ 3,7 ]
+[ 5,5 ]
+Approach 2 for pair of sum:
+[ 6,4 ]
+[ 3,7 ]
+[ 5,5 ]
+Approach 1 for pair of diff:
+[ 17,7 ]
+[ 20,10 ]
+*/
