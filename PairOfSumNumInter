@@ -1,0 +1,60 @@
+package com.imp.prg;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class PairOfSumNumInter{
+	public static void main(String[] args) {
+		int arr[]={5,4,6,7,17,3,5};
+		int sum=10;
+		System.out.println("Approach 1 for pair of sum:");
+		pairOfSum(arr,sum);
+		System.out.println("Approach 2 for pair of sum:");
+		pairOfSumUsingHash(arr,sum);
+		System.out.println("Approach 1 for pair of diff:");
+		int arr1[]={7,8,17,10,19,20};
+		pairOfDiff(arr1,sum);
+	}
+
+	static void pairOfSum(int arr[],int sum){
+		boolean visited[]=new boolean[1000];
+		for(int i=0;i<arr.length;i++){
+			int temp=sum-arr[i];
+			if(temp>=0 && visited[temp]){
+				System.out.println("[ "+arr[i]+","+temp+" ]");
+			}else{
+				visited[arr[i]]=true;
+			}
+		}
+		
+	}
+	static Map<Integer,Integer> map = new HashMap<Integer,Integer>();
+	
+	static void pairOfSumUsingHash(int arr[],int sum){
+		for(int i=0;i<arr.length;i++){
+			
+			if(map.containsKey(arr[i])){
+				System.out.println("[ "+arr[i]+","+map.get(arr[i])+" ]");
+			}else{
+				map.put(sum-arr[i], arr[i]);
+			}
+		}
+	}
+
+	private static void pairOfDiff(int[] arr1, int diff) {
+		boolean visited[]=new boolean[1000];
+		for(int i=0;i<arr1.length;i++){
+			int temp;
+			if(arr1[i]<diff){
+				temp=arr1[i]+10;
+			}else{
+				temp=arr1[i]-10;
+			}
+			if(temp>=0 && visited[temp]){
+				System.out.println("[ "+arr1[i]+","+temp+" ]");
+			}else{
+				visited[arr1[i]]=true;
+			}
+		}
+	}
+}
