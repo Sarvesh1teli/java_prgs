@@ -3,7 +3,7 @@ package com.basic.prg;
  * @author Teli
  *
  */
-public class IterationFactorial {
+public class Factorial {
 	public static void main(String[] args) {
 		IterationFactorial it=new IterationFactorial();
 		int factval=it.factorial(2);
