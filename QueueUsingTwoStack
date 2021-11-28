@@ -1,0 +1,95 @@
+package com.implement.queue.usingtwostack;
+
+import java.util.Stack;
+
+public class QueueUsingTwoStack {
+	public static void main(String[] args) {
+		
+		int[] keys = { 1, 2, 3, 4, 5 };
+		ExQueue q = new ExQueue();
+		ExQueue_2 q2 = new ExQueue_2();
+		// insert above keys
+		for (int key : keys) {
+			q.enQueue(key);
+			q2.enqueue_2(key);
+		}
+		System.out.println("Approach-1 --push operation costly");
+		System.out.println(q.deQueue()); // print 1
+		System.out.println(q.deQueue()); // print 2
+		
+		System.out.println("Approach-2 --pop operation costly");
+		System.out.println(q2.dequeue_2()); // print 1
+		System.out.println(q2.dequeue_2()); // print 2
+	}
+
+}
+
+class ExQueue {
+
+	private Stack s1 = new Stack();
+	private Stack s2 = new Stack();
+
+	public void enQueue(int data) {
+		while (!s1.isEmpty()) {
+			s2.push(s1.pop());
+		}
+		s1.push(data);
+		while (!s2.isEmpty()) {
+			s1.push(s2.pop());
+		}
+	}
+
+	public int deQueue() {
+		
+		if (s1.isEmpty()) {
+			System.out.println("Underflow!!");
+			System.exit(0);
+		}
+		// return the top item from the first stack
+		return (int) s1.pop();
+	}
+
+	 
+}
+
+class ExQueue_2 {
+	private Stack st1 = new Stack();
+	private Stack st2 = new Stack();
+	
+	 public void enqueue_2(int data)
+	    {
+	        // push item into the first stack
+		 st1.push(data);
+	    }
+	 
+	// Remove an item from the queue
+	    public int dequeue_2()
+	    {
+	        // if both stacks are empty
+	        if (st1.isEmpty() && st2.isEmpty())
+	        {
+	            System.out.println("Underflow!!");
+	            System.exit(0);
+	        }
+	        // if the second stack is empty, move elements from the first stack to it
+	        if (st2.isEmpty())
+	        {
+	            while (!st1.isEmpty()) {
+	            	st2.push(st1.pop());
+	            }
+	        }
+	        // return the top item from the second stack
+	        return (int) st2.pop();
+	    }
+	 
+}
+
+/*
+Approach-1 --push operation costly
+1
+2
+Approach-2 --pop operation costly
+1
+2
+
+*/
