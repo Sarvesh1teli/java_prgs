@@ -8,6 +8,10 @@ public class IterationFactorial {
 		IterationFactorial it=new IterationFactorial();
 		int factval=it.factorial(2);
 		System.out.println("factorial of  :"+factval);
+		
+		for (int i = 1; i <= 5; i++) {
+			System.out.printf("Factorial of %d is: %d\n", i, fact(i));
+		}
 	}
 	/**
 	 * @param number
@@ -19,5 +23,13 @@ public class IterationFactorial {
 			sum=sum*i;
 		}
 		return sum;
+	}
+	private static int fact(int n) {
+		if (n == 0 || n == 1) {
+			return 1;
+		} else {
+			return n * fact(n - 1);
+
+		}
 	}
 }
