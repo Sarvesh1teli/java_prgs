@@ -1,0 +1,33 @@
+//Write a program to find common integers between two sorted arrays.
+
+package com.imp.prgs;
+
+public class CommonElementsInArr {
+	public static void main(String[] args) {
+		 int[] input2 = {2,5,7,17,19,20,150};
+	        int[] input1 = {2,5,12,15,150,159};
+	        int index1 = 0;
+	        int index2 = 0;
+	        
+	        while(true) {
+	        	if(index1 >= input1.length || index2 >= input2.length) {
+	        		break;
+	        	}
+	        	if(input1[index1] == input2[index2]) {
+	        		System.out.println(input1[index1]);
+	        		index1=index1+1;
+	        		index2 += 1;
+
+	        	}else if(input1[index1] < input2[index2]) {
+	        		index1 += 1;
+	        	}else {
+	        		index2 += 1;
+	        	}
+	        }
+	}
+
+}
+//output
+2
+5
+150
