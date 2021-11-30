@@ -1,0 +1,47 @@
+/*
+https://www.java2novice.com/java-interview-programs/hackerrank-balanced-brackets/
+Sample Input:
+{[()]}
+{[(])}
+output:
+Yes
+no
+*/
+
+package com.imp.prgs;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+
+public class BalancedBrackets {
+	public static void main(String[] args) {
+		String str = "([{}])";
+		Map<Character,Character> map = new HashMap<Character, Character>();
+		map.put('(', ')');
+		map.put('[', ']');
+		map.put('{', '}');
+		System.out.println(isBalanced(str,map));
+		
+	}
+
+	static String isBalanced(String st,Map map) {
+		
+		Stack<Character> stack = new Stack<>();
+		
+		if(st.length()%2 != 0) {
+			return "No";
+		}
+		
+		for(int i=0;i< st.length();i++) {
+			Character ch = st.charAt(i);
+			if(map.containsKey(ch)) {
+				stack.push(ch);
+			}else if(stack.isEmpty() || ch != map.get(stack.pop())) {
+				return "no" ;
+			}
+		}
+		return stack.isEmpty()?"yes":"no";
+		
+	}
+}
