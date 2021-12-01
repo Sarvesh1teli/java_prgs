@@ -1,0 +1,71 @@
+package com.imp.prgs;
+
+import java.util.Arrays;
+
+/*
+ * (i) Initialize the low, mid and high pointers to, low = 0, mid = 0, high = N
+ * CASE – I : If the element at mid, that is, A[mid] == 0, this means 
+ * the correct position of this element is in the range [0, low-1], therefore,
+ *  we swap A[mid] with A[low]
+ * 
+ *  CASE – II : If the element at mid, that is, A[mid] == 2, this means the correct position of 
+ *  this element is in the range [hi+1, N], therefore, we swap A[mid] with A[hi]
+ * 
+ *  CASE – III : If the element at mid, that is, A[mid]=1, this means that the 
+ *  element is already in its correct segment because [low, mid-1]
+ */
+public class Sort012 {
+	public static void main(String[] args) {
+
+		int[] a = { 1, 2, 2, 0, 0, 1, 2, 2, 1 };
+		sort(a);
+		for (int val : a) {
+			System.out.print(val + " ");
+		}
+
+	}
+
+	public static void sort(int[] a) {
+		/*
+		 * Three pointers to divide the array in designated segments as discussed in the
+		 * post
+		 */
+		int low = 0, mid = 0, high = a.length - 1;
+		while (mid <= high) {
+			/*
+			 * Case - 1, when element at mid pointer is zero, swap with element at low
+			 */
+			if (a[mid] == 0) {
+				swap(a, low, mid);
+				/*
+				 * Increment low as well as mid, as we know the swapped element at mid is a one
+				 */
+				low++;
+				mid++;
+			}
+			/*
+			 * Case - 1, when element at mid pointer is two, swap with element at high
+			 */
+			else if (a[mid] == 2) {
+				/*
+				 * decrement only high and keep mid unchanged, as we do not know anything about
+				 * the swapped element at mid
+				 */
+				swap(a, mid, high);
+				high--;
+			} else {
+				/* Case - 3, when element at mid pointer is one */
+				/* do nothing, and increment mid pointer */
+				mid++;
+			}
+
+		}
+	}
+
+	private static void swap(int[] a, int i, int j) {
+		int temp = a[i];
+		a[i] = a[j];
+		a[j] = temp;
+	}
+
+}
