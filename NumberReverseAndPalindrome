@@ -1,0 +1,33 @@
+package com.imp.prgs;
+
+public class NumberReverse {
+	public static void main(String[] args) {
+		NumberReverse nr = new NumberReverse();
+		int num = 456;
+		int result = nr.reverseNumber(456);
+        System.out.println("reverse number: "+result);
+        
+        if(result == num) {
+        	System.out.println("number is palindrome");
+        }else {
+        	System.out.println("not");
+        }
+	}
+
+	private int reverseNumber(int num) {
+		
+		int remainder = 0;
+		int reverse = 0;
+		while(num !=0) {
+			remainder = num%10;
+			reverse = reverse*10+remainder;
+			num = num/10;
+		}
+		return reverse;
+	}
+}
+
+//output
+reverse number: 654
+not
+
